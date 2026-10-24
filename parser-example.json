@@ -1,0 +1,18 @@
+{
+  "kind": "threads-metrics",
+  "version": 1,
+  "observations": [
+    {
+      "url": "https://www.threads.com/@your_handle/post/POST_ID",
+      "observed_at": "2026-10-24T12:00:00Z",
+      "views": 1200,
+      "likes": 24,
+      "replies": 3,
+      "reposts": 2,
+      "quotes": 0,
+      "shares": null,
+      "clicks": null,
+      "source": "example-only"
+    }
+  ]
+}

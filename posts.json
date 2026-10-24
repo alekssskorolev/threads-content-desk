@@ -1,0 +1,269 @@
+{
+  "kind": "threads-content",
+  "version": 1,
+  "people": [
+    {
+      "id": "A",
+      "name": "Adam Bennett",
+      "role": "Тёплая, разговорная подача",
+      "bio": "Women’s health, explained simply.\nIron, energy & hormones.\nEducational content, not medical advice.",
+      "profile_url": "https://www.threads.com/@byadambennett"
+    },
+    {
+      "id": "D",
+      "name": "Daniel Reed",
+      "role": "Понятные, структурные объяснения",
+      "bio": "Clear explanations of women’s health.\nIron, lab tests & hormones.\nEducation, not personal medical advice.",
+      "profile_url": "https://www.threads.com/@bydanielreed"
+    },
+    {
+      "id": "E",
+      "name": "Emma Hayes",
+      "role": "Практическая подготовка к приёму",
+      "bio": "Women’s health in plain English.\nSymptoms, questions & preparing for appointments.\nEducation, not medical advice.",
+      "profile_url": "https://www.threads.com/@byemmahayes"
+    }
+  ],
+  "posts": [
+    {
+      "id": "A0",
+      "person": "A",
+      "day": 1,
+      "slot": "Утро",
+      "text": "Hi, Threads 👋 I’m Adam.\n\nI’ll be sharing clear, practical explanations about women’s health — especially iron, energy, sleep, and hormones.\n\nNo miracle fixes. No blaming every symptom on one thing.\n\nWhat’s one health topic you wish someone would explain more clearly?",
+      "intro": true
+    },
+    {
+      "id": "A1",
+      "person": "A",
+      "day": 1,
+      "slot": "День",
+      "text": "When did “I’m tired” stop meaning “I need an early night” and start meaning “I plan my entire day around how much energy I might have”?\n\nThat change deserves a conversation.\n\nNot a diagnosis from a post. Not another supplement bought on a guess.\n\nA conversation about what changed, how long it’s been happening, and what needs checking.",
+      "intro": false
+    },
+    {
+      "id": "A2",
+      "person": "A",
+      "day": 1,
+      "slot": "Вечер",
+      "text": "“I had bloodwork done” can leave one important question unanswered:\n\nWhat was actually checked?\n\nYou don’t need to memorize every lab marker. Start by getting a copy of your results and asking what those tests can — and can’t — tell you.",
+      "intro": false
+    },
+    {
+      "id": "A4",
+      "person": "A",
+      "day": 2,
+      "slot": "Утро",
+      "text": "Sometimes a change is easier to describe through what you’ve stopped doing.\n\nYou used to walk after dinner. Now you need to lie down.\nYou used to make weekend plans. Now you wait to see how you feel.\n\nThose details belong in a health conversation, too. They explain what “tired” means in your life.",
+      "intro": false
+    },
+    {
+      "id": "A5",
+      "person": "A",
+      "day": 2,
+      "slot": "День",
+      "text": "Ferritin isn’t the name of an iron supplement. It’s a protein that stores iron.\n\nA ferritin blood test helps assess your iron stores.\n\nUseful information — but not a number to interpret in isolation. Your symptoms, medical history, and other results matter, too.",
+      "intro": false
+    },
+    {
+      "id": "A6",
+      "person": "A",
+      "day": 2,
+      "slot": "Вечер",
+      "text": "Which is harder for you at an appointment:\n\n1. Remembering everything you wanted to say.\n2. Explaining how much it affects your day.\n3. Asking a follow-up question.\n\nYou can answer without sharing any medical details.",
+      "intro": false
+    },
+    {
+      "id": "A7",
+      "person": "A",
+      "day": 3,
+      "slot": "Утро",
+      "text": "“I can still get through the day” doesn’t explain how much the day costs you.\n\nIf you’re describing a change in your health, include the recovery time: what happens after work, after errands, after an ordinary weekend.\n\nGetting something done and feeling well while doing it are different things.",
+      "intro": false
+    },
+    {
+      "id": "A8",
+      "person": "A",
+      "day": 3,
+      "slot": "День",
+      "text": "Before buying another supplement, pause at one question:\n\n“What am I trying to treat, and how do I know that’s the problem?”\n\nWith iron, both too little and too much can be harmful. A post can help you ask questions. It can’t tell you what dose is right for you.",
+      "intro": false
+    },
+    {
+      "id": "A9",
+      "person": "A",
+      "day": 3,
+      "slot": "Вечер",
+      "text": "A useful question to take into your next appointment:\n\n“If these results don’t explain what I’m experiencing, what should we consider next?”\n\nIt leaves room for the results to be reassuring — and for your symptoms to still deserve attention.",
+      "intro": false
+    },
+    {
+      "id": "A3",
+      "person": "A",
+      "day": 0,
+      "slot": "Резерв",
+      "text": "What’s one change in your health you kept explaining away because life was busy?\n\nTiredness? Sleep? Hair shedding? Periods that became harder to manage?\n\nNo need to share private lab results. Just the change you wish you’d brought up sooner.",
+      "intro": false
+    },
+    {
+      "id": "D0",
+      "person": "D",
+      "day": 1,
+      "slot": "Утро",
+      "text": "Hi, Threads. I’m Daniel.\n\nThis account is about making health information easier to understand: what a test measures, what a claim actually means, and which questions are worth asking.\n\nMostly women’s health, iron, energy, and hormones.\n\nClear explanations. Sources. Room for uncertainty.",
+      "intro": true
+    },
+    {
+      "id": "D1",
+      "person": "D",
+      "day": 1,
+      "slot": "День",
+      "text": "“Bloodwork” isn’t one test. It’s a broad word for many different tests answering different questions.\n\nBefore deciding what a result means, check the name of the test.\n\n“What did we measure?” comes before “What does this prove?”",
+      "intro": false
+    },
+    {
+      "id": "D2",
+      "person": "D",
+      "day": 1,
+      "slot": "Вечер",
+      "text": "Ferritin is a protein that stores iron. A ferritin blood test helps assess those stores.\n\nIt doesn’t explain every cause of fatigue, and a single result doesn’t replace a clinical assessment.\n\nUseful question: “Given my symptoms and history, would checking ferritin help?”",
+      "intro": false
+    },
+    {
+      "id": "D4",
+      "person": "D",
+      "day": 2,
+      "slot": "Утро",
+      "text": "A lab result can be reassuring without answering every question about persistent symptoms.\n\nThe next question isn’t automatically “Which supplement?”\n\nIt may be: “What possibilities did these tests assess, and what would make us investigate further?”",
+      "intro": false
+    },
+    {
+      "id": "D5",
+      "person": "D",
+      "day": 2,
+      "slot": "День",
+      "text": "Ferritin and serum iron aren’t interchangeable names.\n\nFerritin helps assess stored iron. Serum iron measures iron in the blood.\n\nThey answer related, but different, questions. When discussing your results, use the test’s actual name rather than just saying “my iron.”",
+      "intro": false
+    },
+    {
+      "id": "D6",
+      "person": "D",
+      "day": 2,
+      "slot": "Вечер",
+      "text": "Before saving a health claim, ask:\n\nIs this a symptom, a possible explanation, or a confirmed diagnosis?\n\nA post can slide between all three in a few sentences.\n\n“This can happen with low iron” is not the same claim as “This means you have low iron.”",
+      "intro": false
+    },
+    {
+      "id": "D7",
+      "person": "D",
+      "day": 3,
+      "slot": "Утро",
+      "text": "A before-and-after lab result can be interesting. It isn’t a universal treatment plan.\n\nWhat was the diagnosis? What else changed? Were other treatments involved?\n\nA result without that context can make a complicated situation look much simpler than it was.",
+      "intro": false
+    },
+    {
+      "id": "D8",
+      "person": "D",
+      "day": 3,
+      "slot": "День",
+      "text": "A good health explanation should tell you where it stops.\n\nWhat does the evidence support?\nWhat is still uncertain?\nWhat needs an individual assessment?\n\nSpecific language matters. So do limits.",
+      "intro": false
+    },
+    {
+      "id": "D9",
+      "person": "D",
+      "day": 3,
+      "slot": "Вечер",
+      "text": "A simple way to organize a health question:\n\n1. What changed?\n2. When did it start?\n3. What has already been checked?\n4. What is the next step?\n\nThat structure won’t diagnose anything. It can make a short appointment more focused.",
+      "intro": false
+    },
+    {
+      "id": "D3",
+      "person": "D",
+      "day": 0,
+      "slot": "Резерв",
+      "text": "Three details worth keeping with a lab result:\n\n• The date.\n• The unit.\n• The lab’s reference range.\n\nA number copied from a screenshot without that context is much easier to misunderstand. Keep the original report, not just the number.",
+      "intro": false
+    },
+    {
+      "id": "E0",
+      "person": "E",
+      "day": 1,
+      "slot": "Утро",
+      "text": "Hi, Threads 👋 I’m Emma.\n\nI’m starting a space for plain-English conversations about women’s health.\n\nWhat changed? What should you write down? How do you explain it at an appointment without forgetting half your questions?\n\nThat’s the kind of practical stuff I’ll be sharing here.",
+      "intro": true
+    },
+    {
+      "id": "E1",
+      "person": "E",
+      "day": 1,
+      "slot": "День",
+      "text": "Before an appointment, write down the sentence you most want to finish.\n\nNot your entire medical history. The main concern.\n\n“My energy has changed over the last three months, and it’s affecting my ability to get through work.”\n\nYou can read it from your phone. You don’t have to explain everything from memory.",
+      "intro": false
+    },
+    {
+      "id": "E2",
+      "person": "E",
+      "day": 1,
+      "slot": "Вечер",
+      "text": "Instead of only writing “poor sleep,” try adding:\n\n• Trouble falling asleep, staying asleep, or both?\n• How often?\n• Since when?\n• What is the next day like?\n\nYou don’t need a perfect sleep diary. A few specific details can help explain the problem.",
+      "intro": false
+    },
+    {
+      "id": "E4",
+      "person": "E",
+      "day": 2,
+      "slot": "Утро",
+      "text": "If “my periods are heavier” feels hard to explain, write down what changed:\n\nHow often you change protection. Whether you need to change it overnight. Whether bleeding disrupts work or plans.\n\nYou don’t need to estimate an exact volume to describe the impact.",
+      "intro": false
+    },
+    {
+      "id": "E5",
+      "person": "E",
+      "day": 2,
+      "slot": "День",
+      "text": "Bring a list of what you take — including vitamins, iron, and other supplements. Add the dose if you know it.\n\nNot because you need to defend your choices.\n\nBecause “I take a few vitamins” leaves out details that may matter when reviewing tests or treatment.",
+      "intro": false
+    },
+    {
+      "id": "E6",
+      "person": "E",
+      "day": 2,
+      "slot": "Вечер",
+      "text": "One sentence you’re allowed to use at an appointment:\n\n“I understand that result is reassuring. Can we talk about what might explain the symptoms I’m still having?”\n\nIt doesn’t dismiss the test. It brings the conversation back to your concern.",
+      "intro": false
+    },
+    {
+      "id": "E7",
+      "person": "E",
+      "day": 3,
+      "slot": "Утро",
+      "text": "A one-page appointment note can have just four headings:\n\nMain concern.\nWhen it started.\nHow it affects daily life.\nQuestions I want answered.\n\nPut the most important question at the top. You don’t need a beautifully organized binder to arrive prepared.",
+      "intro": false
+    },
+    {
+      "id": "E8",
+      "person": "E",
+      "day": 3,
+      "slot": "День",
+      "text": "If you’re asked to monitor a symptom, it’s reasonable to ask:\n\n“What should I track?”\n“How long should I track it?”\n“What changes mean I should contact you sooner?”\n\n“Keep an eye on it” is easier to follow when you know what you’re looking for.",
+      "intro": false
+    },
+    {
+      "id": "E9",
+      "person": "E",
+      "day": 3,
+      "slot": "Вечер",
+      "text": "Before you leave an appointment, try summarizing the plan:\n\n“So the next step is ____. If things don’t improve, I should ____. We’ll follow up in ____.”\n\nThat gives both of you a chance to catch misunderstandings before you walk out.",
+      "intro": false
+    },
+    {
+      "id": "E3",
+      "person": "E",
+      "day": 0,
+      "slot": "Резерв",
+      "text": "What would make your next appointment feel more useful?\n\nA clearer explanation?\nA written plan?\nTime for one more question?\nKnowing when to follow up?\n\nSometimes naming what you need is the first thing worth putting on your list.",
+      "intro": false
+    }
+  ]
+}
