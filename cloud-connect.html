@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; connect-src https://functions.yandexcloud.net; form-action 'none'; base-uri 'none'"><title>Подключить облако · Threads Desk</title>
+<style>*{box-sizing:border-box}body{margin:0;background:#f5f4ef;color:#252b27;font:16px/1.55 Arial,sans-serif}main{max-width:560px;margin:8vh auto;padding:30px;background:#fff;border:1px solid #dddcd4;border-radius:20px}h1{font-size:28px;line-height:1.2;margin:10px 0 16px}.eyebrow{font-size:12px;letter-spacing:.12em;color:#637267}label{display:block;font-size:14px;font-weight:600;margin-top:20px}input{width:100%;padding:12px;border:1px solid #c7cbc6;border-radius:9px;margin:6px 0;font:14px Arial,sans-serif}input[type=file]{font-size:12px}button{padding:12px 18px;border:0;background:#285d44;color:white;border-radius:9px;font-size:15px;cursor:pointer;margin:18px 0}button:disabled{opacity:.6;cursor:wait}a{color:#285d44}.note{font-size:13px;color:#626b63}#status{font-size:14px;white-space:pre-wrap}#status.error{color:#a3342b}.check{display:flex;gap:10px;font-weight:400}.check input{width:auto;flex:none;margin-top:6px}@media(max-width:600px){main{margin:20px 12px;padding:24px}}</style>
+</head><body><main><div class="eyebrow">THREADS DESK / ОБЛАЧНОЕ ХРАНЕНИЕ</div><h1>Одни отметки во всех браузерах</h1><p>Подключите созданную базу Яндекс Cloud. Сначала будет проверен ключ, затем на сайте можно перенести старые отметки.</p>
+<form id="form"><label for="endpoint">Адрес облачной функции</label><input id="endpoint" type="url" readonly value="https://functions.yandexcloud.net/d4emlk00avk75e7ldlp7"><label for="key">Секретный ключ подключения</label><input id="key" type="password" autocomplete="off" spellcheck="false" placeholder="Заполняется из приватной ссылки" required><p class="note">Не отправляйте ключ и приватную ссылку в чат. Ключ хранится в этом браузере и не включается в резервные копии.</p><label class="check"><input id="consent" type="checkbox" required><span>Разрешаю сохранять отметки и выбранные показатели постов в моей базе Яндекс Cloud.</span></label><button id="connect" type="submit">Проверить и подключить</button></form>
+<details><summary>Подключить через файл конфигурации</summary><p class="note">Если вы скачали client-config.json из своего Cloud Shell, выберите его здесь. Исходный файл никуда не загружается; его ключ используется только для запроса к указанной выше функции.</p><input id="file" type="file" accept="application/json,.json" aria-label="Секретный файл конфигурации"></details>
+<p id="status" role="status" aria-live="polite"></p><p class="note">В новом браузере также нужно один раз выполнить подключение. Это не вход в Яндекс: пароль от аккаунта здесь не нужен.</p><a href="./">Вернуться без подключения</a></main>
+<script>
+(function(){'use strict';
+ const ENDPOINT='https://functions.yandexcloud.net/d4emlk00avk75e7ldlp7',CONFIG_KEY='threads-desk-cloud-v1';
+ const $=id=>document.getElementById(id);
+ // Consume the fragment before any network requests. It is not sent in HTTP requests or Referer.
+ const fragment=location.hash.slice(1);
+ if(fragment)history.replaceState(null,'',location.pathname+location.search);
+ function report(text,error=false){$('status').textContent=text;$('status').className=error?'error':'';}
+ function fill(c){if(c.endpoint!==ENDPOINT||typeof c.key!=='string'||!/^[a-f0-9]{64}$/.test(c.key))throw Error('Неверный адрес или формат ключа. Используйте конфиг из своей установки.');$('key').value=c.key;report('Ключ из приватной ссылки или файла готов к проверке.');}
+ if(fragment){try{fill(Object.fromEntries(new URLSearchParams(fragment)));}catch(e){report(e.message,true);}}
+ $('file').onchange=async e=>{try{const file=e.target.files[0];if(!file)return;if(file.size>10000)throw Error('Неверный файл конфигурации.');const c=JSON.parse(await file.text());if(c.kind!=='threads-desk-cloud-config'||c.version!==1)throw Error('Неверный файл конфигурации.');fill(c);}catch(e){report(e.message,true);}finally{e.target.value='';}};
+ $('form').onsubmit=async e=>{e.preventDefault();const key=$('key').value.trim();if(!/^[a-f0-9]{64}$/.test(key)){report('Неверный формат ключа.',true);return;}$('connect').disabled=true;report('Проверяем доступ к облаку…');try{
+  const r=await fetch(ENDPOINT,{method:'POST',credentials:'omit',cache:'no-store',referrerPolicy:'no-referrer',headers:{'Content-Type':'application/json','X-Desk-Key':key},body:JSON.stringify({op:'get'}),signal:AbortSignal.timeout(35000)});
+  if(r.status===401)throw Error('Ключ не подходит. Возьмите актуальный конфиг из Cloud Shell.');if(!r.ok)throw Error('Облако пока недоступно (HTTP '+r.status+'). Повторите позже.');
+  const data=await r.json();if(!Number.isSafeInteger(data.revision)||data.revision<0||!(data.state===null||data.state?.kind==='threads-desk-backup'))throw Error('Неверный ответ облака. Подключение не сохранено.');
+  // Never overwrite local post records or auto-upload anything on this setup page.
+  localStorage.setItem(CONFIG_KEY,JSON.stringify({kind:'threads-desk-cloud-config',version:1,endpoint:ENDPOINT,key}));
+  $('key').value='';location.replace('./');
+ }catch(e){report(e.name==='QuotaExceededError'?'Браузер не разрешает сохранить ключ. Разрешите хранение данных для сайта.':e.message==='Failed to fetch'?'Нет связи с облаком. Проверьте интернет и попробуйте снова.':e.message,true);$('connect').disabled=false;}};
+})();
+</script></body></html>
