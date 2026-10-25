@@ -121,7 +121,7 @@ let stored=null,revision=0,puts=0,offline=false,errors=[];
  offline=false;await tick(p);await tick(q);await ready(p);await ready(q);
  assert(stored.custom_people[tokyo]&&stored.custom_people[london]&&stored.custom_people[id]);
  await tick(q);await ready(q);
- assert.equal(await q.locator('#tabs button').count(),7);
+ assert.equal(await q.locator('#tabs [data-person]').count(),7);
  await p.locator(`#tabs [data-person="${id}"]`).click();await q.locator(`#tabs [data-person="${id}"]`).click();await wait(p,()=>document.getElementById('accountClock').textContent.includes('Москва'));await wait(q,()=>document.getElementById('accountClock').textContent.includes('Москва'));offline=true;
  await upload(p,{kind:'threads-posts',version:1,posts:[{id:'post-010',text:'Добавлено с компьютера'}]});await p.locator('#confirmPostsImport').click();
  await upload(q,{kind:'threads-posts',version:1,posts:[{id:'post-011',text:'Добавлено с телефона'}]});await q.locator('#confirmPostsImport').click();
