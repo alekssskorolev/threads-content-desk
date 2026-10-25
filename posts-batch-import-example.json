@@ -1,0 +1,27 @@
+{
+  "kind": "threads-posts-batch",
+  "version": 1,
+  "characters": [
+    {
+      "character_id": "A",
+      "character_name": "Adam Bennett",
+      "posts": [
+        {
+          "id": "example-batch-001",
+          "text": "An illustrative first block, not a finished editorial post.",
+          "continuation": "The rest of the publication goes here."
+        }
+      ]
+    },
+    {
+      "character_id": "D",
+      "character_name": "Daniel Reed",
+      "posts": [
+        {
+          "id": "example-batch-001",
+          "text": "An illustrative short post with no continuation."
+        }
+      ]
+    }
+  ]
+}

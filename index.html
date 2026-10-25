@@ -18,8 +18,9 @@
 </main><div id="toast" role="status" hidden></div>
 <dialog id="personDialog"><div class="dialog-heading"><h2>Новый персонаж</h2><button id="closePerson" class="close-dialog" aria-label="Закрыть">×</button></div><form id="personForm"><label class="field" for="personName">Имя персонажа<input id="personName" type="text" maxlength="80" autocomplete="off" placeholder="Например, Алексей" required></label><label class="field" for="personCity">Город или часовой пояс<input id="personCity" type="text" list="cityOptions" autocomplete="off" value="Москва" required><datalist id="cityOptions"></datalist><small>Будут показаны только дата и часы этого города. Время публикации не назначается.</small></label><p id="personError" class="error-text" role="alert"></p><button class="primary" type="submit">Добавить персонажа</button></form></dialog>
 <dialog id="jsonHelpDialog"><div class="dialog-heading"><h2>Посты из другого чата</h2><button id="closeJsonHelp" class="close-dialog" aria-label="Закрыть инструкцию">×</button></div><p class="note">Скопируйте инструкцию в другой чат. Полученный файл JSON загрузите на странице нужного персонажа. Новый файл добавляет посты, а не заменяет старые.</p><div class="toolbar"><button id="copyJsonHelp" class="primary">Скопировать инструкцию</button><button id="downloadJsonHelp">Скачать инструкцию</button><button id="downloadJsonExample">Пример JSON</button></div><pre id="jsonInstructions" class="instructions"></pre></dialog>
-<dialog id="importPreview"><div class="dialog-heading"><h2>Загрузка постов</h2><button id="cancelPostsImport" class="close-dialog" aria-label="Отменить загрузку">×</button></div><p id="importPreviewText"></p><p id="importError" class="error-text" role="alert"></p><button id="confirmPostsImport" class="primary">Добавить посты</button></dialog>
-<dialog id="settingsDialog"><div class="dialog-heading"><h2>Настройки</h2><button id="closeSettings" class="close-dialog" aria-label="Закрыть настройки">×</button></div><p class="note">Для обычной работы заходить сюда не нужно. Здесь можно подключить другой браузер или сохранить данные отдельным файлом.</p><div id="contentStatus" class="note"></div><p id="storageNote" class="note">Без подключения облака данные остаются только в этом браузере.</p><div class="cloud-settings"><a href="cloud-connect.html">Подключить облако</a><button id="cloudShare" hidden>Ссылка для другого браузера</button><button id="cloudDisconnect" hidden>Отключить облако</button><button id="cloudBackup" hidden>Копия до подключения</button></div><p class="note">«Ссылка для другого браузера» подключает телефон или компьютер к той же базе. Ссылка секретная — передавайте её только себе. «Отключить облако» отключает только этот браузер, не удаляя базу.</p><hr class="dialog-divider"><div class="toolbar"><button id="export">Скачать резервную копию</button><button id="import">Восстановить копию</button></div><p class="note">Резервная копия — необязательный файл со всеми персонажами, текстами и отметками. Для синхронизации она не нужна. «Восстановить копию» заменяет текущие данные содержимым файла; используйте только при необходимости. Секретного ключа в копии нет.</p><input type="file" id="backupFile" accept="application/json,.json" hidden></dialog>
+<dialog id="importPreview"><div class="dialog-heading"><h2>Загрузка постов</h2><button id="cancelPostsImport" class="close-dialog" aria-label="Отменить загрузку">×</button></div><p id="importPreviewText"></p><ul id="importPreviewList"></ul><p id="importError" class="error-text" role="alert"></p><button id="confirmPostsImport" class="primary">Добавить посты</button></dialog>
+<dialog id="batchHelpDialog"><div class="dialog-heading"><h2>Общий JSON для персонажей</h2><button id="closeBatchHelp" class="close-dialog" aria-label="Закрыть формат JSON">×</button></div><div class="toolbar"><button id="copyBatchHelp" class="primary">Скопировать формат</button><button id="downloadBatchHelp">Скачать инструкцию</button></div><pre id="batchInstructions" class="instructions"></pre></dialog>
+<dialog id="settingsDialog"><div class="dialog-heading"><h2>Настройки</h2><button id="closeSettings" class="close-dialog" aria-label="Закрыть настройки">×</button></div><p class="note">Здесь можно загрузить новую партию постов, подключить другой браузер или сохранить резервную копию.</p><section class="batch-import-panel"><h3>Посты для всех персонажей</h3><p class="note">Получите один общий JSON от ИИ и загрузите его сюда. Персонажи должны быть уже добавлены на сайте.</p><div class="toolbar"><button id="openBatchImport" class="primary">Загрузить посты для всех</button><button id="exportAgentContext">Контекст для ИИ</button><button id="showBatchHelp">Формат общего JSON</button></div><p class="note">«Контекст для ИИ» скачает имена, ID и существующие посты без ключа облака. Передайте файл только выбранному вами агенту.</p><input id="batchPostsFile" type="file" accept="application/json,.json" hidden></section><hr class="dialog-divider"><div id="contentStatus" class="note"></div><p id="storageNote" class="note">Без подключения облака данные остаются только в этом браузере.</p><div class="cloud-settings"><a href="cloud-connect.html">Подключить облако</a><button id="cloudShare" hidden>Ссылка для другого браузера</button><button id="cloudDisconnect" hidden>Отключить облако</button><button id="cloudBackup" hidden>Копия до подключения</button></div><p class="note">«Ссылка для другого браузера» подключает телефон или компьютер к той же базе. Ссылка секретная — передавайте её только себе. «Отключить облако» отключает только этот браузер, не удаляя базу.</p><hr class="dialog-divider"><div class="toolbar"><button id="export">Скачать резервную копию</button><button id="import">Восстановить копию</button></div><p class="note">Резервная копия — необязательный файл со всеми персонажами, текстами и отметками. Для синхронизации она не нужна. «Восстановить копию» заменяет текущие данные содержимым файла; используйте только при необходимости. Секретного ключа в копии нет.</p><input type="file" id="backupFile" accept="application/json,.json" hidden></dialog>
 <script src="cloud-sync.js?v=20261025-2"></script>
 <script>
 'use strict';
@@ -121,7 +122,7 @@ function validateLibrary(b){
   if(!safeId(id)||!/^u[a-f0-9]{12}$/.test(id)||!plainMap(p)||p.id!==id||typeof p.name!=='string'||!p.name.trim()||[...p.name].length>80||!Array.isArray(p.zones)||p.zones.length!==1||!validZone(p.zones[0]?.zone)||typeof p.zones[0]?.label!=='string'||!p.zones[0].label.trim()||p.zones[0].label.length>100||!Number.isFinite(Date.parse(p.created_at)))throw Error('Некорректный персонаж '+id);
  }
  for(const [id,p] of Object.entries(posts)){
-  if(!safeId(id)||!plainMap(p)||p.id!==id||!Object.hasOwn(people,p.person)||typeof p.source_id!=='string'||!/^[A-Za-z0-9_-]{1,48}$/.test(p.source_id)||id!==p.person+'_'+p.source_id||typeof p.text!=='string'||!p.text.trim()||[...p.text].length>500||(p.continuation!==undefined&&(typeof p.continuation!=='string'||!p.continuation.trim()||[...p.continuation].length>12000))||!Number.isSafeInteger(p.order)||p.order<0||p.order>1000000)throw Error('Некорректный импортированный пост '+id);
+  if(!safeId(id)||!plainMap(p)||p.id!==id||!(Object.hasOwn(people,p.person)||originalLibrary.people.some(v=>v.id===p.person))||typeof p.source_id!=='string'||!/^[A-Za-z0-9_-]{1,48}$/.test(p.source_id)||id!==p.person+'_'+p.source_id||typeof p.text!=='string'||!p.text.trim()||[...p.text].length>500||(p.continuation!==undefined&&(typeof p.continuation!=='string'||!p.continuation.trim()||[...p.continuation].length>12000))||!Number.isSafeInteger(p.order)||p.order<0||p.order>1000000)throw Error('Некорректный импортированный пост '+id);
  }
 }
 function rebuildContent(){
@@ -136,7 +137,7 @@ function updateClock(){
  $('accountClock').textContent=date+' · '+zones.map(z=>z.label+' '+new Intl.DateTimeFormat('ru-RU',{timeZone:z.zone,hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).format(now)).join(' · ');
 }
 function isLegacyShort(p){return !p.custom&&p.day>0&&!p.intro&&!p.continuation&&!state.records[p.id]?.include_short;}
-function sourceOrder(a,b){return a.custom&&b.custom?a.order-b.order||a.id.localeCompare(b.id):originalLibrary.posts.findIndex(p=>p.id===a.id)-originalLibrary.posts.findIndex(p=>p.id===b.id);}
+function sourceOrder(a,b){if(!!a.custom!==!!b.custom)return a.custom?1:-1;return a.custom&&b.custom?a.order-b.order||a.id.localeCompare(b.id):originalLibrary.posts.findIndex(p=>p.id===a.id)-originalLibrary.posts.findIndex(p=>p.id===b.id);}
 function canChange(){if(!appReady){toast('Дождитесь загрузки сохранённых данных.');return false;}if(cloudSync&&!cloudSync.canEdit()){toast('Дождитесь подключения или разрешите конфликт облака.');return false;}return true;}
 function syncSizeFits(value){const bytes=new TextEncoder().encode(JSON.stringify({op:'put',expectedRevision:9007199254740991,state:value})).length;if(bytes>490000)throw Error('Объём библиотеки превышает лимит текущего облачного хранения. Уменьшите файл; изменения не внесены.');}
 function personCity(value){const found=CITY_OPTIONS.find(([label,zone])=>label.toLocaleLowerCase()===value.toLocaleLowerCase()||zone===value);if(found)return {label:found[0],zone:found[1]};if(validZone(value))return {label:value.split('/').at(-1).replaceAll('_',' '),zone:value};throw Error('Выберите город из списка или укажите часовой пояс IANA, например Europe/Moscow.');}
@@ -166,7 +167,8 @@ const JSON_INSTRUCTIONS=`Подготовь JSON-файл с постами дл
 4. Не меняй текст уже загруженного ID. Для новой версии используй новый ID. Повторный импорт тех же ID с теми же текстами пропускается без дублей; совпавший ID с другим текстом отклоняет весь файл.
 5. Переносы строк внутри JSON-строк записывай как \\n. Кавычки экранируй стандартными средствами JSON.
 6. Не добавляй персонажа, город, даты или время публикации в файл. Пользователь выбирает персонажа на сайте перед загрузкой; порядок постов совпадает с порядком в массиве.
-7. Один файл — от 1 до 100 постов, не более 200 КБ. Тексты — обычный текст, без HTML/Markdown-разметки интерфейса. Не включай ключи, пароли или другие секреты.
+7. Не используй длинные тире U+2014 и U+2013. Вместо них - обычный короткий дефис '-' или естественная пунктуация. Текст человечный, конкретный, без шаблонных заходов и выдуманного личного опыта.
+8. Один файл — от 1 до 100 постов, не более 200 КБ. Тексты — обычный текст, без HTML/Markdown-разметки интерфейса. Не включай ключи, пароли или другие секреты.
 
 Перед генерацией запроси у пользователя тему, язык, тон и количество постов, если они ещё не заданы.`;
 function openNewPerson(){if(!canChange())return;$('personForm').reset();$('personCity').value='Москва';$('personError').textContent='';$('personDialog').showModal();setTimeout(()=>$('personName').focus(),20);}
@@ -192,35 +194,90 @@ $('personForm').onsubmit=e=>{e.preventDefault();if(!canChange())return;try{
  }catch(err){$('personError').textContent=err.message;}};
 $('uploadPosts').onclick=()=>{if(!canChange())return;$('postsFile').dataset.person=person;$('postsFile').click();};
 let stagedImport=null;
+function prepareImportGroup(target,items){
+ const who=SEED.people.find(p=>p.id===target);if(!who)throw Error('Персонаж '+String(target)+' не найден. Сначала добавьте его на сайте и скачайте актуальный контекст для ИИ.');
+ if(!Array.isArray(items)||!items.length||items.length>100)throw Error(who.name+': нужно от 1 до 100 постов.');
+ const seen=new Set(),additions=[];let duplicates=0;
+ for(const [i,item] of items.entries()){
+  if(!plainMap(item)||typeof item.id!=='string'||!/^[A-Za-z0-9_-]{1,48}$/.test(item.id)||!safeId(item.id)||seen.has(item.id))throw Error(who.name+': неверный или повторяющийся id у поста '+(i+1));
+  seen.add(item.id);
+  if(typeof item.text!=='string'||!item.text.trim()||[...item.text].length>500)throw Error('Первый текст '+who.name+' / '+item.id+' должен содержать от 1 до 500 символов.');
+  if(item.continuation!==undefined&&(typeof item.continuation!=='string'||!item.continuation.trim()||[...item.continuation].length>12000))throw Error('Неверное продолжение у '+who.name+' / '+item.id+'. Максимум 12000 символов.');
+  const id=target+'_'+item.id,existing=state.custom_posts?.[id];
+  if(originalLibrary.posts.some(p=>p.id===id))throw Error('ID '+item.id+' пересекается со встроенным постом. Используйте новый ID.');
+  if(existing){if(existing.text!==item.text||(existing.continuation||'')!==(item.continuation||''))throw Error('ID '+item.id+' у '+who.name+' уже загружен с другим текстом. Используйте новый ID; существующий пост не изменён.');duplicates++;continue;}
+  additions.push({id,source_id:item.id,person:target,text:item.text,...(item.continuation?{continuation:item.continuation}:{})});
+ }
+ return {person:target,posts:additions,duplicates,name:who.name,total:items.length};
+}
+function stageGroups(groups,mode){
+ const additions=groups.reduce((n,g)=>n+g.posts.length,0);
+ if(!additions){toast('Все посты из этого файла уже загружены. Дубли не добавлены.');return;}
+ stagedImport={groups,mode};
+ $('importPreviewText').textContent=groups.length===1?'Персонаж: '+groups[0].name+'. Новых постов: '+additions+'. Уже загружены и будут пропущены: '+groups[0].duplicates+'. Существующие тексты и отметки останутся без изменений.':'Персонажей: '+groups.length+'. Новых постов: '+additions+'. Импорт будет применён целиком. Существующие тексты и отметки останутся без изменений.';
+ $('importPreviewList').replaceChildren();
+ if(groups.length>1)for(const g of groups){const li=document.createElement('li');li.textContent=g.name+': новых '+g.posts.length+', дублей '+g.duplicates+'.';$('importPreviewList').append(li);}
+ $('importError').textContent='';$('importPreview').showModal();
+}
+function importError(err){toast('Файл не загружен: '+(err instanceof SyntaxError?'Некорректный JSON. Используйте файл без Markdown и комментариев.':err.message));}
 $('postsFile').onchange=async e=>{try{
  if(!canChange())return;const file=e.target.files[0];if(!file)return;const target=e.target.dataset.person;
  if(!state.custom_people?.[target])throw Error('Сначала выберите нового персонажа.');
  if(file.size>200000)throw Error('Файл больше 200 КБ. Разделите посты на несколько файлов.');
  const data=JSON.parse((await file.text()).replace(/^\uFEFF/,''));
- if(data?.kind!=='threads-posts'||data.version!==1||!Array.isArray(data.posts)||!data.posts.length||data.posts.length>100)throw Error('Нужен JSON формата threads-posts, version: 1, от 1 до 100 постов.');
- const seen=new Set(),additions=[];let duplicates=0;
- for(const [i,item] of data.posts.entries()){
-  if(!plainMap(item)||typeof item.id!=='string'||!/^[A-Za-z0-9_-]{1,48}$/.test(item.id)||!safeId(item.id)||seen.has(item.id))throw Error('Неверный или повторяющийся id у поста '+(i+1));
-  seen.add(item.id);
-  if(typeof item.text!=='string'||!item.text.trim()||[...item.text].length>500)throw Error('Первый текст поста '+item.id+' должен содержать от 1 до 500 символов.');
-  if(item.continuation!==undefined&&(typeof item.continuation!=='string'||!item.continuation.trim()||[...item.continuation].length>12000))throw Error('Неверное продолжение у поста '+item.id+'. Максимум 12000 символов.');
-  const id=target+'_'+item.id,existing=state.custom_posts?.[id];
-  if(existing){if(existing.text!==item.text||(existing.continuation||'')!==(item.continuation||''))throw Error('ID '+item.id+' уже загружен с другим текстом. Используйте новый ID; существующий пост не изменён.');duplicates++;continue;}
-  additions.push({id,source_id:item.id,person:target,text:item.text,...(item.continuation?{continuation:item.continuation}:{})});
+ if(data?.kind!=='threads-posts'||data.version!==1)throw Error('Нужен JSON формата threads-posts, version: 1.');
+ stageGroups([prepareImportGroup(target,data.posts)],'single');
+ }catch(err){importError(err);}finally{e.target.value='';}};
+$('openBatchImport').onclick=()=>{if(canChange())$('batchPostsFile').click();};
+$('batchPostsFile').onchange=async e=>{try{
+ if(!canChange())return;const file=e.target.files[0];if(!file)return;if(file.size>450000)throw Error('Общий файл больше 450 КБ. Уменьшите партию.');
+ const data=JSON.parse((await file.text()).replace(/^\uFEFF/,''));
+ if(data?.kind!=='threads-posts-batch'||data.version!==1||!Array.isArray(data.characters)||!data.characters.length||data.characters.length>100)throw Error('Нужен общий JSON: kind threads-posts-batch, version 1 и массив characters.');
+ const seen=new Set(),groups=[];let total=0;
+ for(const item of data.characters){
+  if(!plainMap(item)||!safeId(item.character_id)||seen.has(item.character_id))throw Error('Неверный или повторяющийся character_id. Каждый персонаж должен быть указан один раз.');
+  seen.add(item.character_id);const group=prepareImportGroup(item.character_id,item.posts);
+  if(item.character_name!==undefined&&item.character_name!==group.name)throw Error('ID '+item.character_id+' соответствует имени '+group.name+'. Исправьте файл по актуальному контексту для ИИ.');
+  total+=group.total;if(total>300)throw Error('В общем файле больше 300 постов. Разделите партию.');groups.push(group);
  }
- if(!additions.length){toast('Все посты из этого файла уже загружены. Дубли не добавлены.');return;}
- stagedImport={person:target,posts:additions};
- $('importPreviewText').textContent='Персонаж: '+state.custom_people[target].name+'. Новых постов: '+additions.length+'. Уже загружены и будут пропущены: '+duplicates+'. Существующие тексты и отметки останутся без изменений.';
- $('importError').textContent='';$('importPreview').showModal();
- }catch(err){toast('Файл не загружен: '+(err instanceof SyntaxError?'Некорректный JSON. Используйте файл без Markdown и комментариев.':err.message));}finally{e.target.value='';}};
+ stageGroups(groups,'batch');
+ }catch(err){importError(err);}finally{e.target.value='';}};
 $('cancelPostsImport').onclick=()=>{stagedImport=null;$('importPreview').close();};
 $('confirmPostsImport').onclick=()=>{if(!canChange()||!stagedImport)return;try{
- const {person:target,posts}=stagedImport;if(!state.custom_people?.[target])throw Error('Персонаж больше не доступен. Выберите его и загрузите файл заново.');
- const candidate=JSON.parse(JSON.stringify(state));candidate.custom_posts={...(candidate.custom_posts||{})};
- let order=Math.max(-1,...Object.values(candidate.custom_posts).filter(p=>p.person===target).map(p=>p.order));let added=0;
- for(const p of posts){const existing=candidate.custom_posts[p.id];if(existing){if(existing.text!==p.text||(existing.continuation||'')!==(p.continuation||''))throw Error('Пост '+p.source_id+' уже изменён в другом браузере. Перезагрузите файл с новым ID.');continue;}candidate.custom_posts[p.id]={...p,order:++order};added++;}
- validateBackup(candidate);syncSizeFits(candidate);state=candidate;rebuildContent();save();person=target;location.hash=target;render();stagedImport=null;$('importPreview').close();toast('Загружено постов: '+added+'.');
+ const {groups,mode}=stagedImport,candidate=JSON.parse(JSON.stringify(state));candidate.custom_posts={...(candidate.custom_posts||{})};let added=0;
+ for(const g of groups){
+  if(!SEED.people.some(p=>p.id===g.person))throw Error('Персонаж больше не доступен. Загрузите актуальный файл заново.');
+  let order=Math.max(-1,...Object.values(candidate.custom_posts).filter(p=>p.person===g.person).map(p=>p.order));
+  for(const p of g.posts){const existing=candidate.custom_posts[p.id];if(existing){if(existing.text!==p.text||(existing.continuation||'')!==(p.continuation||''))throw Error('Пост '+p.source_id+' уже изменён в другом браузере. Используйте новый ID.');continue;}candidate.custom_posts[p.id]={...p,order:++order};added++;}
+ }
+ validateBackup(candidate);syncSizeFits(candidate);state=candidate;rebuildContent();save();if(mode==='single'){person=groups[0].person;location.hash=person;}render();stagedImport=null;$('importPreview').close();if(mode==='batch')$('settingsDialog').close();toast('Загружено постов: '+added+'.');
  }catch(err){$('importError').textContent=err.message;}};
+function exportAgentContext(){
+ const value={kind:'threads-characters-context',version:1,exported_at:new Date().toISOString(),characters:SEED.people.map(who=>{
+  const posts=SEED.posts.filter(p=>p.person===who.id),zones=who.zones||[{label:'Нью-Йорк',zone:'America/New_York'},{label:'Лос-Анджелес',zone:'America/Los_Angeles'}];
+  return {character_id:who.id,character_name:who.name,display_timezones:zones,bio:who.bio||'',role:who.role||'',used_post_ids:posts.map(p=>p.source_id||p.id),posts:posts.map(p=>({id:p.source_id||p.id,text:p.text,...(p.continuation?{continuation:p.continuation}:{}),published:!!state.records[p.id]?.done}))};
+ })};
+ download('characters-context.json',JSON.stringify(value,null,2),'application/json');
+}
+$('exportAgentContext').onclick=()=>{if(appReady)exportAgentContext();};
+const BATCH_JSON_INSTRUCTIONS=`Подготовь один файл all-characters-posts.json (UTF-8) с готовыми публикациями для всех запрошенных персонажей. Используй полную редакционную инструкцию владельца и актуальный characters-context.json.
+
+Схема:
+{"kind":"threads-posts-batch","version":1,"characters":[{"character_id":"A","character_name":"Adam Bennett","posts":[{"id":"batch-001-post-001","text":"Первый блок до 500 символов","continuation":"Всё продолжение"}]}]}
+
+character_id и character_name бери точно из characters-context.json. Не выдумывай ID новых персонажей и не используй название вместо ID. Персонаж должен уже существовать на сайте. Указывай только тех, для кого запрошены посты; для остальных не добавляй пустые группы.
+На одного персонажа 1-100 постов, всего до 300, файл до 450 КБ. Не путай это с рекомендуемой частотой публикации.
+text - обязательная непустая строка до 500 символов Unicode; continuation - необязательное непустое продолжение до 12000. При отсутствии продолжения убери поле. Два блока копирования не означают только два сообщения в Threads. Учитывай реальные возможности редактора, не обещай автоматическую нарезку.
+ID каждого нового поста - 1-48 латинских букв, цифр, дефисов или подчёркиваний. Проверяй занятые ID из контекста и не меняй старые тексты; новую редакцию сохраняй под новым ID. Одна группа на персонажа; одинаковые post ID у разных персонажей допустимы.
+Не добавляй время публикации, дни или служебные подписи в тексты. Не повторяй темы и заходы из приложенного архива.
+Запрещены длинные тире U+2014 и U+2013: используй обычный короткий дефис '-' или естественную пунктуацию. Не ставь дефис в каждом предложении. Текст максимально естественный, человечный, конкретный и отличимый по голосам. Без канцелярита, фальшивого личного опыта, выдуманных пациентов/квалификации и шаблонных нейросетевых заходов.
+Никаких Markdown, HTML, комментариев и секретов внутри файла. Переносы строк экранируй как \\n. Проверь JSON и длины программно, если инструмент доступен. Медицинские и коммерческие утверждения проверяй, не выдумывай данные или обещания. Не ограничивай всю публикацию 500 символами.
+
+Этот текст задаёт техническую выдачу и базовый стиль, а не заменяет полный редакционный плейбук. Если отсутствуют тема/язык/цель нового персонажа, уточни их одним сообщением. Город задаёт часы, не язык.`;
+$('showBatchHelp').onclick=()=>{$('batchInstructions').textContent=BATCH_JSON_INSTRUCTIONS;$('batchHelpDialog').showModal();};
+$('closeBatchHelp').onclick=()=>$('batchHelpDialog').close();
+$('copyBatchHelp').onclick=()=>copy(BATCH_JSON_INSTRUCTIONS);
+$('downloadBatchHelp').onclick=()=>download('threads-batch-import-instruction.txt',BATCH_JSON_INSTRUCTIONS,'text/plain;charset=utf-8');
 
 async function start(){
  let status='Встроенная очередь загружена. Для обновлений используйте сайт по постоянному адресу.';
@@ -239,7 +296,7 @@ async function start(){
 
  appReady=true;
 }
-document.addEventListener('click',e=>{if(e.target.closest('[data-done],#import,#addPerson,#uploadPosts,#confirmPostsImport')&&!canChange()){e.preventDefault();e.stopImmediatePropagation();}},true);
+document.addEventListener('click',e=>{if(e.target.closest('[data-done],#import,#addPerson,#uploadPosts,#openBatchImport,#confirmPostsImport')&&!canChange()){e.preventDefault();e.stopImmediatePropagation();}},true);
 start();
 window.addEventListener('resize',()=>requestAnimationFrame(revealActiveTab));
 setInterval(updateClock,1000);
