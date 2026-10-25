@@ -402,6 +402,69 @@
       "continuation": "First, name what is being watched.\n\nIs it the frequency of a symptom, its severity, its effect on daily life, a bleeding pattern, a response to treatment, or a laboratory result?\n\nDifferent things need different kinds of follow-up. “Monitor symptoms” is easier to act on when you know which ones matter to the decision.\n\nAsk: “What specific changes should I keep track of?”\n\nSecond, ask about the time frame.\n\nWhen would the clinician expect to review the situation if it stays the same? How long is reasonable to try the agreed plan? Is a review already booked, or should you arrange one?\n\nDo not assume that one retest interval applies to every nutrient, medicine, or condition. The timing depends on what is being treated and what the clinician needs to assess.\n\nAsk: “If there is no improvement, when should I get back in touch?”\n\nThird, ask what should not wait.\n\nYou don't need to invent your own red-flag list from a search engine. Ask which symptoms or changes require earlier contact, urgent assessment, or emergency help in your situation.\n\nIf a severe or sudden concerning change happens, do not delay seeking help while trying to fit it into a routine follow-up plan.\n\nFourth, check the route back.\n\nShould you call the practice, message through the portal, arrange a repeat test, or make another appointment? If you are waiting for a referral or result, who should you contact if you hear nothing?\n\nA plan is harder to use when everyone assumes someone else is responsible for the next step.\n\nYou can bring the questions together in one sentence:\n\n“So we're watching this, for about this long. If it doesn't improve, I contact this service. If these changes happen, I seek help sooner. Have I got that right?”\n\nAsk for a written summary if that would help. Once you're home, put the review point in your calendar and keep a short record relevant to the plan—not an exhausting spreadsheet of every sensation.\n\nThis is useful whether the initial results were reassuring or treatment has already begun. Reassurance and follow-up are not opposites.\n\nAnd it isn't a demand for endless testing. Sometimes observation really is the right choice. The goal is to understand why, what you are looking for, and what happens next.\n\nSave the four headings:\n\nWhat are we watching?\nFor how long?\nWhat should not wait?\nHow do I get back in touch?",
       "batch": "long-v2",
       "hook_style": "sentence"
+    },
+    {
+      "id": "A15",
+      "person": "A",
+      "day": 9,
+      "slot": "",
+      "queue_visible": true,
+      "batch": "reader-led-v3",
+      "hook_style": "lived-problem",
+      "text": "You take your iron. Then your stomach becomes the next problem.\n\nNow you're choosing between sticking with the plan and getting through the workday without feeling sick.\n\n\"Just be consistent\" misses a real question: is this a plan you can actually tolerate?",
+      "continuation": "Nausea. Constipation. A stomachache that makes you dread the next tablet.\n\nThese can happen with oral iron. And when they do, \"I'm taking it\" can turn into \"I'm trying to take it, but some days I can't face it.\"\n\nThat gap matters. It belongs in the conversation, not hidden behind an embarrassed \"yes\" when someone asks whether you're following the plan.\n\nYou can be specific without producing a perfect diary:\n\n\"I feel nauseated after I take it.\"\n\"The constipation is making me skip doses.\"\n\"I changed when I take it because I couldn't manage the original routine.\"\n\nTell your prescriber or pharmacist what you're taking, what happens and what you've already changed. They can review whether the product or the way it's taken needs adjusting, and what the options are in your situation.\n\nThere can be a trade-off between absorption and tolerability. A schedule that sounds ideal online may not be one you can follow. That is a reason to review it, not a reason to copy someone else's dose or stop a prescribed medicine to make room for it.\n\nA useful sentence is:\n\n\"I want to follow the treatment, but this side effect is getting in the way. Can we work out a plan I can manage?\"\n\nIf symptoms are severe or concerning, get medical advice promptly rather than treating them as something you have to push through.\n\nYou don't have to turn every tablet into a test of willpower. How treatment fits into your actual day is part of whether the plan is workable."
+    },
+    {
+      "id": "A16",
+      "person": "A",
+      "day": 9,
+      "slot": "",
+      "queue_visible": true,
+      "batch": "reader-led-v3",
+      "hook_style": "audience-question",
+      "text": "If you've had a stretch of better energy, what was the first everyday thing you noticed?\n\nGetting through the morning without a nap? Cooking instead of ordering in? Making plans without needing a recovery day?\n\nNo lab numbers needed. I'm curious about the bit of life you got back."
+    },
+    {
+      "id": "D15",
+      "person": "D",
+      "day": 9,
+      "slot": "",
+      "queue_visible": true,
+      "batch": "reader-led-v3",
+      "hook_style": "one-mechanism",
+      "text": "You get a ferritin test while recovering from an infection. The number is higher than before.\n\nDid your iron stores improve, or is something else affecting the result?\n\nFerritin has more than one job.",
+      "continuation": "Ferritin is an iron-storage protein. Its concentration in the blood can also rise as part of the body's response to inflammation, including some infections.\n\nThat makes the result more complicated than a fuel gauge. A higher number does not always mean that depleted iron stores have been refilled.\n\nIt also doesn't mean every high result is caused by an infection. Different situations can produce similar-looking numbers.\n\nThe useful move is to add context, not to throw the test away.\n\nWas there an illness around the blood draw? Is there an ongoing inflammatory condition? What do the blood count and other iron measurements show?\n\nA clinician may use more than one measurement to work out what is happening. Transferrin saturation, for example, answers a related question about the proportion of iron-binding sites on transferrin that are occupied. It is not just another name for ferritin.\n\nWhich results are useful depends on the clinical question. This isn't a reason to order every marker in a supplement company's test package.\n\nTry asking:\n\n\"Could the illness affect this ferritin result, and does it change how we interpret the rest of my tests?\"\n\nIf you're comparing two reports, keep the dates, units and circumstances of both blood draws. A number from a week when you were ill may need different context from one taken when you were well.\n\nThe takeaway isn't \"normal ferritin never counts.\" It's that one result can carry more than one signal. Understanding that is more useful than chasing a universal target from a screenshot."
+    },
+    {
+      "id": "D16",
+      "person": "D",
+      "day": 9,
+      "slot": "",
+      "queue_visible": true,
+      "batch": "reader-led-v3",
+      "hook_style": "claim-check",
+      "text": "A headline links low ferritin with ADHD. That is not the same as showing that taking iron treats ADHD.\n\nBefore the supplement recommendation, ask:\n\nWas this a study of children or adults?\nWas iron deficiency confirmed?\nDid it test a treatment, or just find an association?\n\nThose are different questions."
+    },
+    {
+      "id": "E15",
+      "person": "E",
+      "day": 9,
+      "slot": "",
+      "queue_visible": true,
+      "batch": "reader-led-v3",
+      "hook_style": "followup-tool",
+      "text": "Your follow-up appointment is tomorrow.\n\nYou know your latest ferritin number. But when someone asks how you've been feeling, you can only remember yesterday.\n\nBefore you go, write down a typical week, not just your best day.",
+      "continuation": "You don't need to score every symptom or turn your day into a tracking project.\n\nPick two ordinary things that were difficult before the agreed treatment plan. Maybe you needed a nap after work. Maybe a normal errand meant canceling the rest of the afternoon.\n\nFor each one, write what it used to look like and what it usually looks like now.\n\nFor example:\n\n\"Before: I needed to lie down after most workdays. Lately: that's happening on fewer days, but I still have little energy for the evening.\"\n\nThen add what's still bothering you. Improvement in one part of the day doesn't make an unchanged symptom irrelevant.\n\nFinally, note what has made the plan difficult: side effects, missed doses, a confusing schedule, or uncertainty about what you were supposed to do. Bring the actual details rather than a guilty \"I wasn't perfect.\"\n\nYour note can be this small:\n\nWhat is easier now?\nWhat has not changed?\nWhat has been hard about following the plan?\n\nBring it alongside the report, not instead of it. A better week does not prove what caused the improvement, and a changed lab number does not describe your whole day.\n\nAt the appointment, ask:\n\n\"Looking at the results and how I've been doing, what should we keep doing, and what needs another look?\"\n\nThe aim isn't to arrive with a verdict. It's to give the conversation something more useful than your memory of one good or bad morning."
+    },
+    {
+      "id": "E16",
+      "person": "E",
+      "day": 9,
+      "slot": "",
+      "queue_visible": true,
+      "batch": "reader-led-v3",
+      "hook_style": "pharmacist-script",
+      "text": "Before you add iron to a morning routine full of medicines and supplements, ask a pharmacist:\n\n\"Can I take this with what I already use, or does anything need to be spaced apart?\"\n\nBring the whole list. Don't stop a prescribed medicine to make a supplement schedule work."
     }
   ]
 }
