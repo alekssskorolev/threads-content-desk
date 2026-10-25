@@ -1,0 +1,15 @@
+{
+  "kind": "threads-posts",
+  "version": 1,
+  "posts": [
+    {
+      "id": "post-001",
+      "text": "Первый текст поста",
+      "continuation": "Продолжение поста"
+    },
+    {
+      "id": "post-002",
+      "text": "Пост без продолжения"
+    }
+  ]
+}

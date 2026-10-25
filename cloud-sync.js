@@ -14,7 +14,7 @@
     return value;
   });
   const same = (a, b) => signature(a) === signature(b);
-  const meaningful = s => Object.values(s.records || {}).some(r => r.done || r.url || r.history?.length || r.include_short || r.scheduled_slot);
+  const meaningful = s => Object.keys(s.custom_people || {}).length > 0 || Object.keys(s.custom_posts || {}).length > 0 || Object.values(s.records || {}).some(r => r.done || r.url || r.history?.length || r.include_short || r.scheduled_slot);
   const count = s => Object.values(s.records || {}).filter(r => r.done).length;
   function validConfig(c) {
     return c && c.version === 1 && c.endpoint === ENDPOINT && typeof c.key === 'string' && /^[a-f0-9]{64}$/.test(c.key);
@@ -28,14 +28,18 @@
       return preference === 'local' ? l : r;
     };
     for (const field of new Set([...Object.keys(base), ...Object.keys(local), ...Object.keys(remote)])) {
-      if (field === 'records' || field === 'exported_at') continue;
+      if (['records', 'custom_people', 'custom_posts', 'exported_at'].includes(field)) continue;
       const value = choose(base[field], local[field], remote[field], field);
       if (value === undefined) delete result[field]; else result[field] = clone(value);
     }
-    result.records = {};
-    for (const id of new Set([...Object.keys(base.records), ...Object.keys(local.records), ...Object.keys(remote.records)])) {
-      const value = choose(base.records[id], local.records[id], remote.records[id], id);
-      if (value !== undefined) Object.defineProperty(result.records, id, {value: clone(value), enumerable: true});
+    for (const field of ['records', 'custom_people', 'custom_posts']) {
+      if (field !== 'records' && ![base, local, remote].some(s => Object.hasOwn(s, field))) continue;
+      result[field] = {};
+      const b = base[field] || {}, l = local[field] || {}, r = remote[field] || {};
+      for (const id of new Set([...Object.keys(b), ...Object.keys(l), ...Object.keys(r)])) {
+        const value = choose(b[id], l[id], r[id], field === 'records' ? id : field + ':' + id);
+        if (value !== undefined) Object.defineProperty(result[field], id, {value: clone(value), enumerable: true});
+      }
     }
     delete result.exported_at;
     return {state: result, conflicts};
@@ -163,7 +167,7 @@
         backup(local);
         choice('migration', 'Перенос отметок в облако',
           `В этом браузере опубликовано: ${count(local)}. В облаке: ${count(r.state)}. ` +
-          'Локальная резервная копия сохранена. Выберите источник; ничего не заменяется автоматически.', [
+          'Персонажи и тексты также будут перенесены. Локальная резервная копия сохранена. Ничего не заменяется автоматически.', [
           [meaningful(r.state) ? 'Использовать облачные отметки' : 'Начать с пустого облака', async () => {
             // A fresh read avoids adopting an already stale server version.
             hideChoice(); busy = true;
