@@ -42,7 +42,6 @@ main{padding-top:18px}.queue-label{display:flex;align-items:center;justify-conte
 <section id="cloudChoice" class="cloud-choice" hidden><h2 id="cloudChoiceTitle"></h2><p id="cloudChoiceText"></p><div id="cloudChoiceButtons" class="toolbar"></div></section>
 <section class="cards" id="cards" aria-label="Неопубликованные посты"></section>
 <details class="future-posts" id="futurePosts"><summary id="futureLabel">Следующие посты</summary><section class="cards" id="futureCards" aria-label="Будущие публикации"></section></details>
-<details class="short-drafts" id="shortDrafts"><summary id="shortDraftsLabel">Прежние короткие черновики</summary><section class="cards" id="shortDraftCards" aria-label="Прежние короткие черновики"></section></details>
 <details class="utility-panel" id="utilities"><summary>Дополнительные функции</summary><div id="contentStatus" class="content-warning"></div>
 <div class="toolbar"><button id="export">↓ Резервная копия</button><button id="import">↑ Восстановить копию</button><button id="csv">↓ Статистика CSV</button><button id="parser">↑ Импорт из Collector</button><button id="help">Как подключить парсер</button></div>
 <input type="file" id="backupFile" accept="application/json,.json" hidden><input type="file" id="parserFile" accept="application/json,.json" multiple hidden>
@@ -52,7 +51,6 @@ main{padding-top:18px}.queue-label{display:flex;align-items:center;justify-conte
 <details class="reserve-panel"><summary>Резервные посты</summary><section class="cards" id="reserveCards" aria-label="Резервные посты"></section></details>
 </details>
 <details class="archive-panel" id="archive"><summary id="archiveLabel">Опубликованные</summary><section class="cards" id="publishedCards" aria-label="Опубликованные посты"></section></details>
-<details class="top-stats" id="globalStats"><summary>Общая статистика</summary><div id="summary" class="summary"></div><div id="profileSummary" class="profile-summary"></div><div class="bottom">По всем трём аккаунтам: последние сохранённые счётчики, не уникальные зрители. Пусто ≠ 0. Автоматическое обновление из Collector пока не включено.</div></details>
 </main><div id="toast" role="status" hidden></div>
 <dialog id="helpDialog"><h2>Подключение парсера</h2><p>Можно выбрать один или несколько файлов archive.json из вашего Threads Collector (links-v2) либо готовую выгрузку threads-metrics. Они обрабатываются локально в браузере, без отправки на сервер. Сам сайт не заходит в Threads и не запускает парсер по расписанию.</p><ol><li>Опубликуйте пост и сохраните его ссылку в карточке.</li><li>Парсер должен возвращать точную ссылку, время измерения и счётчики <b>исходного поста</b>.</li><li>Нажмите «Импорт из Collector» и выберите archive.json. Архив обычно лежит в ~/Library/Application Support/Threads Collector/data/output/USERNAME/links-v2/. При сборе включите «Обновить статистику», иначе счётчики могут остаться старыми. Совпадение идёт по ID поста из ссылки, не по похожему тексту.</li></ol><pre class="example">{"kind":"threads-metrics","version":1,"observations":[
  {"url":"https://www.threads.com/@handle/post/POST_ID",
@@ -140,16 +138,12 @@ function render(){
  $('tabs').innerHTML=SEED.people.map(p=>`<button class="${p.id===person?'active':''}" data-person="${p.id}" aria-current="${p.id===person?'page':'false'}">${esc(p.name)}</button>`).join('');
  $('bio').textContent=who.bio;
 
- const shortDrafts=active.filter(p=>!state.records[p.id]?.done&&isLegacyShort(p));$('shortDraftCards').innerHTML=shortDrafts.map(cardHTML).join('');$('shortDraftsLabel').textContent=`Прежние короткие черновики · ${shortDrafts.length}`;$('shortDrafts').hidden=!shortDrafts.length;
  const today=scheduleDate(),todayPosts=pending.filter(p=>livePlan.get(p.id)?.date===today),future=pending.filter(p=>livePlan.get(p.id)?.date!==today);
  $('cards').innerHTML=todayPosts.map(cardHTML).join('')||'<div class="empty">На сегодня публикаций нет.</div>';
  $('futureCards').innerHTML=future.map(cardHTML).join('');$('futureLabel').textContent=`Следующие посты · ${future.length}`;$('futurePosts').hidden=!future.length;
  $('publishedCards').innerHTML=published.map(cardHTML).join('')||'<div class="muted">Пока нет опубликованных постов.</div>';
  $('reserveCards').innerHTML=reserve.map(cardHTML).join('')||'<div class="muted">Резерв пуст.</div>';
  $('archiveLabel').textContent=`Опубликованные · ${published.length}`;
- const all=SEED.posts.filter(p=>p.day>0||state.records[p.id]?.done),measured=all.filter(p=>latest(p.id)),sum=k=>{const vals=measured.map(p=>latest(p.id)?.[k]).filter(v=>v!=null);return vals.length?vals.reduce((a,b)=>a+b,0):null;};
- $('summary').innerHTML=[['Опубликовано',all.filter(p=>state.records[p.id]?.done).length],['Просмотры · сумма',sum('views')],['Лайки · сумма',sum('likes')],['Ответы · сумма',sum('replies')],['Репосты · сумма',sum('reposts')],['Переходы · сумма',sum('clicks')]].map(([label,v])=>`<div><strong>${fmt(v)}</strong><span>${label}</span></div>`).join('');
- $('profileSummary').textContent=SEED.people.map(a=>`${a.name}: ${SEED.posts.filter(p=>p.person===a.id&&state.records[p.id]?.done).length} опубликовано`).join(' · ');
 
 }
 function parseHash(){const parts=location.hash.slice(1).split('/');if(SEED.people.some(p=>p.id===parts[0]))person=parts[0];render();}
