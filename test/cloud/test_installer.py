@@ -61,7 +61,13 @@ urllib.request.urlopen=fake
     calls=[json.loads(line) for line in (base/'calls.jsonl').read_text().splitlines()]
     assert not any('create' in a for a in calls),'Cancellation created resources'
     assert 'Ресурсы не создавались' in cancel
+    # Reproduce Cloud Shell's exact failure without touching real filesystem permissions.
+    chmod=base/'bin/chmod'
+    chmod.write_text('#!/bin/sh\necho "Operation not permitted" >&2\nexit 1\n')
+    chmod.chmod(0o755)
     first=run('ДА'); work=base/'home/.threads-desk-cloud/b1gtestfolder12345678'
+    assert 'не позволяет менять POSIX-права' in first
+    chmod.unlink()
     config1=json.loads((work/'client-config.json').read_text())
     assert 'READY_ENDPOINT=https://functions.yandexcloud.net/' in first
     assert config1['key'] not in first,'Secret leaked to console output'

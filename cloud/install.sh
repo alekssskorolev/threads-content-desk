@@ -38,7 +38,12 @@ read -r -p 'Создать ресурсы в этом каталоге? Введ
 [[ "$ANSWER" == 'ДА' ]] || { echo 'Отменено. Ресурсы не создавались.'; exit 0; }
 WORK="$HOME/.threads-desk-cloud/$FOLDER"
 mkdir -p "$WORK"
-chmod 700 "$WORK"
+# Cloud Shell may mount HOME on a filesystem without POSIX chmod support.
+# Do not grant broader permissions or use sudo; leave isolation to personal Cloud Shell storage.
+if ! chmod 700 "$WORK" 2>/dev/null; then
+  printf 'Cloud Shell не позволяет менять POSIX-права папки. Продолжаем в личном хранилище Cloud Shell.\n'
+  printf 'Ключ и client-config.json остаются секретными; не делитесь доступом к этой сессии.\n'
+fi
 if [[ ! -s "$WORK/name" ]]; then
   python3 -c 'import secrets; print("td-sync-"+secrets.token_hex(5))' > "$WORK/name"
 fi
@@ -332,7 +337,7 @@ yc ydb database delete --id '$DB_ID'
 yc iam service-account delete --id '$SA_ID'
 echo 'Облачные ресурсы удалены. Локальные резервные копии не удалялись.'
 REMOVE
-chmod 700 "$WORK/remove.sh"
+# Run with bash, so executable permission is unnecessary on mounted Cloud Shell HOME.
 printf '\nГОТОВО: база и функция созданы, проверка пройдена.\nREADY_ENDPOINT=%s\n' "$(cat "$WORK/endpoint")"
 printf '\nВ чат можно отправить ТОЛЬКО строку READY_ENDPOINT выше (она не секретная).\n'
 printf 'Секретный конфиг для подключения сайта сохранён здесь:\n  %s/client-config.json\n' "$WORK"
